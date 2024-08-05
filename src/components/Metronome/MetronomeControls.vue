@@ -10,8 +10,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-
 import Slider from "./Slider.vue";
 
 const bpm = defineModel("bpm", {

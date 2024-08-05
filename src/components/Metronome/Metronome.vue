@@ -16,7 +16,7 @@ const emit = defineEmits(["beat"]);
 const bpm = ref(120);
 const isPlaying = ref(false);
 
-const isBeat = ref(false);
+const isBeat = ref(true);
 const timer = ref<NodeJS.Timeout | null>(null);
 
 const play = () => {
@@ -25,7 +25,7 @@ const play = () => {
     isBeat.value = true;
     setTimeout(() => {
       isBeat.value = false;
-    }, 100);
+    }, interval / 2);
   }, interval);
 };
 
