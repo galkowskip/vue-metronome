@@ -1,6 +1,6 @@
 <template>
   <Metronome @beat="countBeat" @reset="resetBeat" />
-  <Strumming :currentBeat="currentBeat" />
+  <Strumming :currentBeat="currentBeat * 2" />
 </template>
 
 <script setup lang="ts">
