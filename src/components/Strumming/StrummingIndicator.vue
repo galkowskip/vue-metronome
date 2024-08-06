@@ -32,14 +32,39 @@ const props = defineProps<{
     width: 16px;
     height: 8px;
     background-color: #f0f0f0;
-    border: 1px solid #f00;
-    transition: background-color 0.1s;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid #f0f0f0;
+      top: 0;
+      left: 0;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid #f0f0f0;
+      top: 0;
+      left: 0;
+    }
   }
 
   &--active:not(.strumming-indicator--disabled) {
     .strumming-indicator {
       &__arrow {
-        background-color: #f00;
+        &::after {
+          border-bottom-color: #f00;
+        }
       }
     }
   }
@@ -47,7 +72,7 @@ const props = defineProps<{
   &--down {
     .strumming-indicator {
       &__arrow {
-        transform: rotate(-45deg);
+        transform: rotate(180deg);
       }
     }
   }
@@ -55,7 +80,7 @@ const props = defineProps<{
   &--up {
     .strumming-indicator {
       &__arrow {
-        transform: rotate(45deg);
+        transform: rotate(0deg);
       }
     }
   }

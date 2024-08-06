@@ -7,7 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import Metronome from "@/components/Metronome/Metronome.vue";
 import BeatController from "./components/BeatController.vue";
 </script>
 
