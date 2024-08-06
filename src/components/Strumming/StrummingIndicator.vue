@@ -5,7 +5,7 @@
     'strumming-indicator--down': !props.isUp,
     'strumming-indicator--disabled': props.disabled,
   }">
-    <div>{{ !props.disabled ? props.beatKey % 1 === 0.5 ? '+' : props.beatKey : '' }}</div>
+    <div>{{ props.beatKey % 1 === 0.5 ? '+' : props.beatKey }}</div>
 
     <div class="strumming-indicator__arrow"></div>
   </div>
@@ -63,7 +63,7 @@ const props = defineProps<{
   &--disabled {
     .strumming-indicator {
       &__arrow {
-        background-color: #f0f0f0;
+        display: none;
       }
     }
   }

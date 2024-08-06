@@ -14,6 +14,8 @@ import BeatController from "./components/BeatController.vue";
 <style scoped>
 .main-container {
   display: flex;
+  flex-direction: column;
+  gap: 16px;
   justify-content: center;
   align-items: center;
   height: 100vh;
