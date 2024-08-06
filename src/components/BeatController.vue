@@ -1,6 +1,6 @@
 <template>
   <Metronome @beat="countBeat" @reset="resetBeat" />
-  <Strumming :currentBeat="currentBeat * 2" />
+  <Strumming :currentBeat="currentBeat" :beatsInBar="beatsInBar" />
 </template>
 
 <script setup lang="ts">
@@ -10,10 +10,11 @@ import Metronome from "@/components/Metronome/Metronome.vue";
 import Strumming from "@/components/Strumming/Strumming.vue";
 
 const currentBeat = ref(0);
+const beatsInBar = 4;
 
 const countBeat = (isMainBeat: boolean) => {
   if (isMainBeat) {
-    if (currentBeat.value >= 4) {
+    if (currentBeat.value >= beatsInBar) {
       currentBeat.value = 1;
     } else {
       currentBeat.value += 0.5;

@@ -8,15 +8,15 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
-import MetronomeControls from "./MetronomeControls.vue";
-import MetronomeIndicator from "./MetronomeIndicator.vue";
+import MetronomeControls from "@/components/Metronome/MetronomeControls.vue";
+import MetronomeIndicator from "@/components/Metronome/MetronomeIndicator.vue";
 
 const emit = defineEmits(["beat"]);
 
 const bpm = ref(120);
 const isPlaying = ref(false);
 
-const isBeat = ref(true);
+const isBeat = ref(false);
 const timer = ref<number | undefined>(undefined);
 
 const play = () => {
@@ -25,7 +25,7 @@ const play = () => {
     isBeat.value = true;
     setTimeout(() => {
       isBeat.value = false;
-    }, interval / 2);
+    }, 100);
   }, interval);
 };
 

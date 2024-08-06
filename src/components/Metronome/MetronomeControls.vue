@@ -14,11 +14,9 @@ import Slider from "./Slider.vue";
 
 const bpm = defineModel("bpm", {
   default: 120,
-  emits: ["update:bpm"],
 });
 const isPlaying = defineModel("isPlaying", {
   default: false,
-  emits: ["update:isPlaying"],
 });
 
 const resetBpm = () => {

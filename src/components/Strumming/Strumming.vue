@@ -1,19 +1,15 @@
 <template>
   <div class="strumming-container">
-    <StrummingIndicator
-      v-for="i in 8"
-      :key="i"
-      :isUp="i % 2 === 0"
-      :isActive="currentBeat - 1 === i"
-    />
+    <StrummingDouble v-for="i in beatsInBar" :key="i" :currentBeat="currentBeat" :beatKey="i" />
   </div>
 </template>
 
 <script setup lang="ts">
-import StrummingIndicator from "./StrummingIndicator.vue";
+import StrummingDouble from "./StrummingDouble.vue";
 
 const props = defineProps<{
   currentBeat: number;
+  beatsInBar: number
 }>();
 </script>
 
