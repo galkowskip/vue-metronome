@@ -4,10 +4,16 @@
     'strumming-indicator--up': props.isUp,
     'strumming-indicator--down': !props.isUp,
     'strumming-indicator--disabled': props.disabled,
-  }">
-    <div>{{ props.beatKey % 1 === 0.5 ? '+' : props.beatKey }}</div>
+  }" @click="toggleStrum">
+    <div class="strumming-indicator__number">{{ props.beatKey % 1 === 0.5 ? '+' : props.beatKey }}</div>
 
-    <div class="strumming-indicator__arrow"></div>
+    <div class="strumming-indicator__arrow">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+        <path d="m26.71 10.29-10-10a1 1 0 0 0-1.41 0l-10 10 1.41 1.41L15 3.41V32h2V3.41l8.29 8.29z" />
+      </svg>
+
+
+    </div>
   </div>
 </template>
 
@@ -18,6 +24,12 @@ const props = defineProps<{
   disabled?: boolean;
   beatKey: number;
 }>();
+
+const emit = defineEmits();
+
+const toggleStrum = () => {
+  emit('toggleStrum', props.beatKey);
+};
 </script>
 
 <style scoped lang="scss">
@@ -27,43 +39,39 @@ const props = defineProps<{
   grid-template-rows: 32px 32px;
   gap: 4px;
   font-size: 0.8rem;
+  padding: 4px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: border 0.1s;
+
+  &:hover {
+    cursor: pointer;
+
+    border: 1px solid #fff;
+  }
+
+  &__number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   &__arrow {
-    width: 16px;
-    height: 8px;
-    background-color: #f0f0f0;
     position: relative;
+    color: #fff;
 
-    &::after {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 0;
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-bottom: 8px solid #f0f0f0;
-      top: 0;
-      left: 0;
-    }
-
-    &::before {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 0;
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-bottom: 8px solid #f0f0f0;
-      top: 0;
-      left: 0;
+    svg {
+      stroke: #fff;
+      fill: #fff;
     }
   }
 
-  &--active:not(.strumming-indicator--disabled) {
-    .strumming-indicator {
-      &__arrow {
-        &::after {
-          border-bottom-color: #f00;
+  &--active {
+    &:not(.strumming-indicator--disabled) {
+      .strumming-indicator__arrow {
+        svg {
+          stroke: #f00;
+          fill: #f00;
         }
       }
     }
@@ -88,8 +96,13 @@ const props = defineProps<{
   &--disabled {
     .strumming-indicator {
       &__arrow {
-        display: none;
+        svg {
+          stroke: transparent;
+          fill: transparent;
+        }
       }
+
+
     }
   }
 }
